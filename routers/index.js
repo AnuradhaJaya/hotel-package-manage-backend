@@ -17,6 +17,15 @@ const getCategoryWisePackages = require('../controller/offers/getCategorywisePac
 const getPackageDetails = require('../controller/offers/getPackageDetails')
 const searchPackage = require('../controller/offers/searchPackage')
 const deletePackageController = require('../controller/offers/deletePackage')
+const sendEmailController = require('../controller/email/sendEmai')
+const getEmailController = require('../controller/email/getEmails')
+const { sendEmailMsgController } = require('../controller/email/sendEmailMsg')
+const storeEmailMsgController = require('../controller/email/storeSendMsg')
+const getSendMessagesController = require('../controller/email/getsendMsg')
+const addFeedbackController = require('../controller/feedback/addfeedback')
+const getAllFeedbacksController = require('../controller/feedback/getallfeedback')
+const deleteFeedbackController = require('../controller/feedback/deletefeedback')
+const { updateFeedback } = require('../controller/feedback/updatefeedback')
 
 router.post("/signup",userSignupController)
 router.post("/signin",userSigninController)
@@ -37,8 +46,18 @@ router.post("/package-details",getPackageDetails)
 router.get("/search",searchPackage)
 router.post("/delete-package",autherToken,deletePackageController)
 
+//email
+router.post("/send-email",sendEmailController)
+router.get("/get-emails",getEmailController)
+router.post("/send-message",sendEmailMsgController)
+router.post("/store-message",storeEmailMsgController)
+router.get("/get-send-message",getSendMessagesController)
 
 
-
+//feedback
+router.post("/add-feedback",addFeedbackController)
+router.get("/get-feedback",getAllFeedbacksController)
+router.post("/update-feedback/:id",updateFeedback)
+router.post("/delete-feedback",deleteFeedbackController)
 
 module.exports=router
